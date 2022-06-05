@@ -37,7 +37,7 @@ NEWLINE			=	\n
 				@printf "$(COLOR_LCYAN)build object$(NOCOLOR) [$(COLOR_LGREEN)info$(NOCOLOR)]: "
 				@printf "ready $(COLOR_LYELLOW)$@$(NOCOLOR)$(NEWLINE)"
 
-.phony		:	all debug clean fclean re
+.PHONY		:	all debug clean fclean re
 
 all			:	$(NAME)
 
