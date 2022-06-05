@@ -23,6 +23,11 @@ static t_node	*ft_create_element(void	*element, size_t size_element)
 	if (result == NULL)
 		return (NULL);
 	result->element = (void *)malloc(size_element);
+	if (result->element == NULL)
+	{
+		free(result);
+		return (NULL);
+	}
 	ft_memcpy(result->element, element, size_element);
 	result->next = NULL;
 	return (result);
