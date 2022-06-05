@@ -27,13 +27,13 @@ int main()
 
 	printf("First elem: %s\n", *(char **)ft_top((const t_queue **)&queue));
 
-	printf("All elemes with first:\n");
+	printf("All elems with first:\n");
 	while (!ft_empty((const t_queue **)&queue))
 	{
 		printf("%s\n", ft_my_top(&queue));
 		ft_pop(&queue);
 	}
-	
+
 	ft_deinit(&queue);
 
 	return (0);

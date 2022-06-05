@@ -44,14 +44,14 @@ int main()
 	printf("First elem: {%d, %d}\n",	(*(t_point *)ft_top((const t_queue **)&queue)).x,
 										(*(t_point *)ft_top((const t_queue **)&queue)).y);
 
-	printf("All elemes with first:\n");
+	printf("All elems with first:\n");
 	while (!ft_empty((const t_queue **)&queue))
 	{
 		t_point	s = ft_my_top(&queue);
 		printf("{%d, %d}\n", s.x, s.y);
 		ft_pop(&queue);
 	}
-	
+
 	ft_deinit(&queue);
 
 	return (0);
