@@ -41,4 +41,7 @@ void	*ft_top(const t_queue	**queue);
 //		empty.c
 bool	ft_empty(const t_queue	**queue);
 
+//		copy.c
+void	ft_copy(const t_queue	**src, t_queue	**dst);
+
 #endif

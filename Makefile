@@ -10,7 +10,7 @@ CC_FLAGS	=	-Wall -Werror -Wextra
 CC_FLAGS_D	=	-g
 
 SRCS		=	$(addprefix srcs/,\
-					deinit.c empty.c init.c pop.c push.c top.c)
+					deinit.c empty.c init.c pop.c push.c top.c copy.c)
 HEADERS		=	includes/queue.h
 
 OBJS		=	${SRCS:%.c=%.o}
