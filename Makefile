@@ -9,8 +9,7 @@ CC			=	cc
 CC_FLAGS	=	-Wall -Werror -Wextra
 CC_FLAGS_D	=	-g
 
-SRCS		=	$(addprefix srcs/,\
-					deinit.c empty.c init.c pop.c push.c top.c copy.c)
+SRCS		=	$(shell find srcs -name '*.c')
 HEADERS		=	includes/queue.h
 
 OBJS		=	${SRCS:srcs/%.c=build/%.o}
