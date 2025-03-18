@@ -13,8 +13,12 @@ SRCS		=	$(addprefix srcs/,\
 					deinit.c empty.c init.c pop.c push.c top.c copy.c)
 HEADERS		=	includes/queue.h
 
-OBJS		=	${SRCS:%.c=%.o}
+OBJS		=	${SRCS:srcs/%.c=build/%.o}
+
+#OBJS2		=	${addprefix build/,${SRCS:srcs/%.c=%.o}}
 OBJS_D		=	${SRCS:%.c=%_debug.o}
+
+DIRS		=	${dir ${OBJS}}
 
 INCLUDES	=	-I includes
 RM			=	rm -rf
@@ -27,7 +31,8 @@ COLOR_LYELLOW	=	\033[93m
 COLOR_LCYAN		=	\033[96m
 NEWLINE			=	\n
 
-%.o			:	%.c $(HEADERS)
+build/%.o	:	srcs/%.c $(HEADERS)
+				@mkdir -p ${dir $@}
 				@$(CC) $(INCLUDES) $(CC_FLAGS) -c $< -o $@
 				@printf "$(COLOR_LCYAN)build object$(NOCOLOR) [$(COLOR_LGREEN)info$(NOCOLOR)]: "
 				@printf "ready $(COLOR_LYELLOW)$@$(NOCOLOR)$(NEWLINE)"
@@ -37,7 +42,7 @@ NEWLINE			=	\n
 				@printf "$(COLOR_LCYAN)build object$(NOCOLOR) [$(COLOR_LGREEN)info$(NOCOLOR)]: "
 				@printf "ready $(COLOR_LYELLOW)$@$(NOCOLOR)$(NEWLINE)"
 
-.PHONY		:	all debug clean fclean re
+.PHONY		:	all debug build clean fclean re
 
 all			:	$(NAME)
 
@@ -47,6 +52,8 @@ $(NAME)		:	$(OBJS)
 				@$(AR) $(AR_FLAGS) $(NAME) $?
 				@printf "$(COLOR_LCYAN)ar$(NOCOLOR) [$(COLOR_LGREEN)info$(NOCOLOR)]: "
 				@printf "ready $(COLOR_LYELLOW)$(NAME)$(NOCOLOR) for $(COLOR_LYELLOW)$(OS)$(NOCOLOR)$(NEWLINE)"
+
+
 
 $(NAME_D)	:	$(OBJS_D)
 				@$(AR) $(AR_FLAGS_D) $(NAME_D) $?
@@ -60,6 +67,7 @@ clean		:
 
 fclean		:	clean
 				@$(RM) $(NAME) $(NAME_D)
+				@$(RM) ${DIRS}
 				@printf "$(COLOR_LCYAN)$@$(NOCOLOR) [$(COLOR_LGREEN)info$(NOCOLOR)]: "
 				@printf "ready $(COLOR_LYELLOW)$(NAME)$(NOCOLOR) for $(COLOR_LYELLOW)$(OS)$(NOCOLOR)$(NEWLINE)"
 
